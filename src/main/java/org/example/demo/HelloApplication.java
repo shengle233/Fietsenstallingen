@@ -11,7 +11,7 @@ public class HelloApplication extends Application {
 
     public void start(Stage stage){
         Pane root = new Pane();
-        Scene scene = new Scene(root, 500,500);
+        Scene scene = new Scene(root, 1200,800);
         stage.setScene(scene);
         stage.show();
 

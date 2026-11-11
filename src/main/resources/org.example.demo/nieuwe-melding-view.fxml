@@ -1,14 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.demo.controller.NieuweMeldingController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.controller.HomeController">
+   <children>
+      <VBox prefHeight="800.0" prefWidth="181.0" styleClass="sidebar" stylesheets="@css/style.css">
+         <children>
+            <Label prefHeight="27.0" prefWidth="163.0" text="Fietsenstallingen" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="15.0" top="25.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Beheer" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Beheersystem " textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+            </Label>
+            <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="181.0" styleClass="nav-button" stylesheets="@css/style.css" text="Dashboard">
+               <VBox.margin>
+                  <Insets top="100.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" styleClass="nav-button" stylesheets="@css/style.css" text="Meldingen">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" styleClass="nav-button" stylesheets="@css/style.css" text="Nieuwe melding">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" styleClass="nav-button" stylesheets="@css/style.css" text="Medewerkers">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </Button>
+            <Separator prefWidth="200.0">
+               <VBox.margin>
+                  <Insets top="350.0" />
+               </VBox.margin>
+            </Separator>
+            <Button mnemonicParsing="false" styleClass="nav-button-afsluiten" stylesheets="@css/style.css" text="Afsluiten">
+               <VBox.margin>
+                  <Insets left="20.0" top="10.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/exit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
