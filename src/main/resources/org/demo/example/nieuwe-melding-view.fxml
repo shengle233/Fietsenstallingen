@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="dashboard-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.demo.example.controller.NieuweMeldingController">
+
+   <children>
+
+      <!-- ===== SIDEBAR ===== -->
+
+      <VBox prefHeight="800.0" prefWidth="181.0" styleClass="sidebar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+         <children>
+
+            <Label prefWidth="163.0" text="Fietsenstallingen" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20" />
+               </font>
+               <VBox.margin>
+                  <Insets left="15" top="25" />
+               </VBox.margin>
+            </Label>
+
+            <Label text="Beheer" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20" />
+               </font>
+               <VBox.margin>
+                  <Insets left="15" />
+               </VBox.margin>
+            </Label>
+
+            <Label text="Beheersystem" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="15" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+
+            <Button mnemonicParsing="false" onAction="#showDashboard" prefHeight="80" prefWidth="181" styleClass="nav-button" text="Dashboard">
+               <VBox.margin>
+                  <Insets top="100" />
+               </VBox.margin>
+            </Button>
+
+            <Button mnemonicParsing="false" onAction="#showMedewerkers" prefHeight="80" prefWidth="181" styleClass="nav-button" text="Medewerkers" />
+
+            <Button mnemonicParsing="false" onAction="#showNieuweMelding" prefHeight="80" prefWidth="181" styleClass="nav-button" text="Nieuwe melding" />
+
+            <Button mnemonicParsing="false" onAction="#showMeldingen" prefHeight="80" prefWidth="181" styleClass="nav-button" text="Meldingen" />
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <Separator prefWidth="180" />
+
+            <Button mnemonicParsing="false" styleClass="nav-button-afsluiten" text="Afsluiten">
+
+               <VBox.margin>
+                  <Insets bottom="20" left="20" top="10" />
+               </VBox.margin>
+
+               <graphic>
+                  <ImageView fitHeight="19" fitWidth="21" preserveRatio="true">
+                     <image>
+                        <Image url="@images/exit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+
+         </children>
+      </VBox>
+
+      <!-- ===== MAIN CONTENT ===== -->
+
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: #EDF3F9;                        -fx-background-color: #EDF3F9;" vbarPolicy="AS_NEEDED" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="181.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+         <content>
+
+            <VBox spacing="22" style="-fx-background-color: #EDF3F9;">
+
+               <padding>
+                  <Insets bottom="35" left="35" right="35" top="30" />
+               </padding>
+
+               <children>
+
+                  <!-- PAGE TITLE -->
+
+                  <VBox spacing="5">
+
+                     <Label style="-fx-font-size: 26px;                                           -fx-font-weight: bold;                                           -fx-text-fill: #263547;" text="Nieuwe melding" />
+
+                     <Label style="-fx-font-size: 14px;                                            -fx-text-fill: #64748B;" text="Registreer een nieuw probleem bij een fietsenstalling" />
+
+                  </VBox>
+
+                  <!-- WHITE FORM -->
+
+                  <VBox spacing="20" styleClass="form-card">
+
+                     <children>
+
+                        <Label style="-fx-font-size: 18px;                                               -fx-font-weight: bold;                                               -fx-text-fill: #263547;" text="Algemene gegevens" />
+
+                        <!-- FIETSENSTALLING + PROBLEEMTYPE -->
+
+                        <HBox spacing="20">
+
+                           <children>
+
+                              <VBox spacing="8" HBox.hgrow="ALWAYS">
+
+                                 <Label styleClass="form-label" text="Fietsenstalling *" />
+
+                                 <ComboBox fx:id="fietsenstallingComboBox" prefHeight="40" prefWidth="350" promptText="Selecteer fietsenstalling" styleClass="form-input" />
+
+                              </VBox>
+
+                              <VBox spacing="8" HBox.hgrow="ALWAYS">
+
+                                 <Label styleClass="form-label" text="Probleemtype *" />
+
+                                 <ComboBox fx:id="probleemtypeComboBox" prefHeight="40" prefWidth="350" promptText="Selecteer probleemtype" styleClass="form-input" />
+
+                              </VBox>
+
+                           </children>
+                        </HBox>
+
+                        <!-- OMSCHRIJVING -->
+
+                        <VBox spacing="8">
+
+                           <Label styleClass="form-label" text="Omschrijving *" />
+
+                           <TextArea fx:id="omschrijvingArea" prefRowCount="4" promptText="Beschrijf het probleem..." styleClass="form-input" wrapText="true" />
+
+                        </VBox>
+
+                        <!-- MEDEWERKER + DATUM -->
+
+                        <HBox spacing="20">
+
+                           <children>
+
+                              <VBox spacing="8" HBox.hgrow="ALWAYS">
+
+                                 <Label styleClass="form-label" text="Medewerker (optioneel)" />
+
+                                 <ComboBox fx:id="medewerkerComboBox" prefHeight="40" prefWidth="350" promptText="Nog niet toegewezen" styleClass="form-input" />
+
+                              </VBox>
+
+                              <VBox spacing="8" HBox.hgrow="ALWAYS">
+
+                                 <Label styleClass="form-label" text="Datum" />
+
+                                 <StackPane maxWidth="Infinity" prefHeight="40" style="-fx-background-color: #F4F6F9;                                                            -fx-background-radius: 8px;                                                            -fx-border-color: #DFE6EE;                                                            -fx-border-radius: 8px;">
+
+                                    <Label fx:id="datumLabel" style="-fx-text-fill: #64748B;                                                                -fx-font-size: 14px;" text="Automatisch: vandaag" />
+                                    <VBox.margin>
+                                       <Insets right="200.0" />
+                                    </VBox.margin>
+
+                                 </StackPane>
+
+                              </VBox>
+
+                           </children>
+                        </HBox>
+                        <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+
+                        <Separator />
+
+                        <!-- TAKEN -->
+
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+
+                           <children>
+
+                              <Label style="-fx-font-size: 18px;                                                       -fx-font-weight: bold;                                                       -fx-text-fill: #263547;" text="Taken" />
+
+                              <Region HBox.hgrow="ALWAYS" />
+
+                              <Button fx:id="taakToevoegenButton" prefHeight="36" style="-fx-background-color: #E9F2FC;                                                        -fx-text-fill: #306EAE;                                                        -fx-font-weight: bold;                                                        -fx-background-radius: 8px;" text="+ Taak toevoegen" />
+
+                           </children>
+                        </HBox>
+
+                        <!-- DYNAMIC TASK CONTAINER -->
+
+                        <VBox fx:id="takenContainer" spacing="12">
+
+                           <children>
+
+                              <VBox spacing="8" style="-fx-background-color: #F9FBFD;                                                      -fx-background-radius: 8px;                                                      -fx-border-color: #DFE6EE;                                                      -fx-border-radius: 8px;                                                      -fx-padding: 15px;">
+
+                                 <Label styleClass="form-label" text="Taak 1 *" />
+
+                                 <TextField fx:id="eersteTaakField" prefHeight="40" promptText="Beschrijf de taak..." styleClass="form-input" />
+
+                              </VBox>
+
+                           </children>
+                        </VBox>
+
+                        <Separator />
+
+                        <!-- BUTTONS -->
+
+                        <HBox alignment="CENTER_RIGHT" spacing="12">
+
+                           <children>
+
+                              <Button fx:id="annulerenButton" prefHeight="42" styleClass="secondary-button" text="Annuleren" />
+
+                              <Button fx:id="opslaanButton" prefHeight="42" styleClass="primary-button" text="Melding opslaan" />
+
+                           </children>
+                        </HBox>
+
+                     </children>
+                  </VBox>
+
+               </children>
+            </VBox>
+
+         </content>
+      </ScrollPane>
+
+   </children>
+</AnchorPane>

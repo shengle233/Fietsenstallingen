@@ -1,0 +1,191 @@
+.sidebar {
+    -fx-background-color: #263547;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+
+    -fx-font-size: 18px;
+
+    -fx-alignment: center-left;
+    -fx-padding: 0 16px;
+}
+
+.nav-button:hover {
+    -fx-background-color: #425873;
+}
+.nav-button-afsluiten {
+    -fx-background-color: transparent;
+    -fx-text-fill: #afccfa;
+
+    -fx-font-size: 18px;
+
+    -fx-alignment: center-left;
+    -fx-padding: 0 16px;
+}
+.dashboard-background {
+    -fx-background-color: #EDF3F9;
+}
+
+.stat-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 10px;
+    -fx-border-color: #DFE6EE;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+}
+
+
+/* TableView 整体 */
+.modern-table {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-color: #DFE6EE;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-padding: 0;
+}
+
+
+.modern-table .column-header-background {
+    -fx-background-color: #b3d1f2;
+    -fx-background-radius: 10px 10px 0 0;
+}
+
+.modern-table .column-header,
+.modern-table .filler {
+    -fx-background-color: transparent;
+    -fx-size: 44px;
+}
+
+
+.modern-table .column-header .label {
+    -fx-text-fill: black;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-padding: 0 10px;
+}
+
+.modern-table .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #EDF1F5 transparent;
+    -fx-border-width: 0 0 1px 0;
+    -fx-cell-size: 46px;
+}
+
+
+.modern-table .table-cell {
+    -fx-border-color: transparent;
+    -fx-text-fill: #263547;
+    -fx-font-size: 13px;
+    -fx-alignment: center-left;
+    -fx-padding: 0 10px;
+}
+
+
+.modern-table .table-row-cell:hover {
+    -fx-background-color: #F0F5FB;
+}
+
+
+.modern-table .table-row-cell:selected {
+    -fx-background-color: #DDEAF7;
+}
+
+
+.modern-table .table-row-cell:selected .table-cell {
+    -fx-text-fill: #263547;
+}
+
+
+.modern-table .virtual-flow,
+.modern-table .virtual-flow .clipped-container,
+.modern-table .virtual-flow .sheet {
+    -fx-background-color: white;
+}
+
+
+.modern-table .table-row-cell:empty {
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+}
+
+
+.nieuwe-medewerker-button {
+    -fx-background-color: #263547;
+    -fx-text-fill: white;
+
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+
+    -fx-padding: 10px 18px;
+    -fx-cursor: hand;
+}
+
+
+.nieuwe-medewerker-button:hover {
+    -fx-background-color: #425873;
+}
+
+
+.nieuwe-medewerker-button:pressed {
+    -fx-background-color: #192838;
+}
+
+
+.form-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-color: #DFE6EE;
+    -fx-border-radius: 10px;
+    -fx-padding: 25px;
+}
+
+.form-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #263547;
+}
+
+.form-input {
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+    -fx-border-color: #D9E2EA;
+    -fx-border-radius: 8px;
+    -fx-font-size: 14px;
+}
+
+.form-input:focused {
+    -fx-border-color: #4388D4;
+}
+
+.primary-button {
+    -fx-background-color: #263547;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 18px;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #425873;
+}
+
+.secondary-button {
+    -fx-background-color: white;
+    -fx-text-fill: #263547;
+    -fx-border-color: #D9E2EA;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 18px;
+    -fx-cursor: hand;
+}
+
+

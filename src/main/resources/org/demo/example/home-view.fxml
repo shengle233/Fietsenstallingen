@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="dashboard-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.demo.example.controller.HomeController">
+   <children>
+      <VBox prefHeight="800.0" prefWidth="181.0" styleClass="sidebar" stylesheets="@css/style.css">
+         <children>
+            <Label prefHeight="27.0" prefWidth="163.0" text="Fietsenstallingen" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="15.0" top="25.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Beheer" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Beheersystem " textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#showDashboard" prefHeight="80.0" prefWidth="181.0" styleClass="nav-button" stylesheets="@css/style.css" text="Dashboard">
+               <VBox.margin>
+                  <Insets top="100.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Arial Bold" size="23.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#showMedewerkers" prefHeight="80.0" prefWidth="181.0" styleClass="nav-button" stylesheets="@css/style.css" text="Medewerkers">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#showNieuweMelding" prefHeight="80.0" prefWidth="181.0" styleClass="nav-button" stylesheets="@css/style.css" text="Nieuwe melding">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#showMeldingen" prefHeight="80.0" prefWidth="181.0" styleClass="nav-button" stylesheets="@css/style.css" text="Meldingen">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            <Separator prefWidth="200.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Separator>
+            <Button mnemonicParsing="false" styleClass="nav-button-afsluiten" stylesheets="@css/style.css" text="Afsluiten">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" top="10.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/exit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+      <Label layoutX="234.0" layoutY="41.0" text="Dashboard">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <HBox layoutX="234.0" layoutY="129.0" prefHeight="100.0" prefWidth="907.0">
+         <children>
+            <VBox prefHeight="100.0" prefWidth="171.0" styleClass="stat-card" stylesheets="@css/style.css">
+               <children>
+                  <Label text="Open meldingen" textFill="#434343">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin></Label>
+                  <Label text="12">
+                     <font>
+                        <Font name="System Bold" size="35.0" />
+                     </font>
+                     <padding>
+                        <Insets top="15.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox prefHeight="100.0" prefWidth="171.0" styleClass="stat-card" stylesheets="@css/style.css">
+               <children>
+                  <Label text="In behandeling" textFill="#434343">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="8">
+                     <font>
+                        <Font name="System Bold" size="35.0" />
+                     </font>
+                     <padding>
+                        <Insets top="15.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets left="200.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="100.0" prefWidth="171.0" styleClass="stat-card" stylesheets="@css/style.css">
+               <children>
+                  <Label text="Onderbroken" textFill="#434343">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="3">
+                     <font>
+                        <Font name="System Bold" size="35.0" />
+                     </font>
+                     <padding>
+                        <Insets top="15.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets left="190.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+      <TableView layoutX="234.0" layoutY="379.0" prefHeight="357.0" prefWidth="900.0" styleClass="modern-table" stylesheets="@css/style.css">
+        <columns>
+          <TableColumn prefWidth="155.66665649414062" text="Fietsenstalling" />
+          <TableColumn prefWidth="143.16665649414062" text="Probleemtype" />
+            <TableColumn prefWidth="140.16668701171875" text="Datum" />
+            <TableColumn prefWidth="131.83331298828125" text="Status" />
+        </columns>
+      </TableView>
+      <Label layoutX="246.0" layoutY="321.0" text="Recente meldingen">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="246.0" layoutY="351.0" text="Overzicht van recente meldingen" />
+      <Label alignment="CENTER" layoutX="1003.0" layoutY="333.0" prefHeight="34.0" prefWidth="128.0" styleClass="stat-card" stylesheets="@css/style.css" text=" Alle meldingen">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
