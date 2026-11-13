@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="dashboard-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.demo.example.controller.HomeController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="dashboard-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.demo.example.controller.HomeController">
    <children>
       <VBox prefHeight="800.0" prefWidth="181.0" styleClass="sidebar" stylesheets="@css/style.css">
          <children>
@@ -94,14 +94,16 @@
          <children>
             <VBox prefHeight="100.0" prefWidth="171.0" styleClass="stat-card" stylesheets="@css/style.css">
                <children>
-                  <Label text="Open meldingen" textFill="#434343">
+                  <HBox prefHeight="41.0" prefWidth="169.0" />
+                  <Label prefHeight="27.0" prefWidth="391.0" text="Open meldingen" textFill="#434343">
                      <font>
                         <Font size="18.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="10.0" />
-                     </VBox.margin></Label>
-                  <Label text="12">
+                     </VBox.margin>
+                  </Label>
+                  <Label prefHeight="29.0" prefWidth="51.0" text="12">
                      <font>
                         <Font name="System Bold" size="35.0" />
                      </font>
@@ -109,7 +111,7 @@
                         <Insets top="15.0" />
                      </padding>
                      <VBox.margin>
-                        <Insets left="10.0" />
+                        <Insets bottom="10.0" left="10.0" />
                      </VBox.margin>
                   </Label>
                </children>

@@ -186,7 +186,6 @@
 
                            </children>
                         </HBox>
-                        <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
 
                         <Separator />
 

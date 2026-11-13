@@ -80,7 +80,7 @@
     -fx-border-color: transparent;
     -fx-text-fill: #263547;
     -fx-font-size: 13px;
-    -fx-alignment: center-left;
+    -fx-alignment: center;
     -fx-padding: 0 10px;
 }
 
@@ -187,5 +187,65 @@
     -fx-padding: 10px 18px;
     -fx-cursor: hand;
 }
+
+
+.danger-button {
+    -fx-background-color: #B94D4D;
+    -fx-text-fill: white;
+
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+
+    -fx-padding: 10px 18px;
+    -fx-cursor: hand;
+}
+
+.danger-button:hover {
+    -fx-background-color: #9F3838;
+}
+
+.danger-button:pressed {
+    -fx-background-color: #802C2C;
+}
+
+.danger-button:disabled {
+    -fx-opacity: 0.5;
+}
+
+.bewerken-button {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #263547;
+
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-border-color: #D9E2EA;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+
+    -fx-padding: 10px 18px;
+    -fx-cursor: hand;
+}
+
+/* 鼠标悬停 */
+.bewerken-button:hover {
+    -fx-background-color: #E9F2FC;
+    -fx-border-color: #4388D4;
+}
+
+/* 鼠标按下 */
+.bewerken-button:pressed {
+    -fx-background-color: #D6E7F8;
+}
+
+/* 禁用状态 */
+.bewerken-button:disabled {
+    -fx-opacity: 0.5;
+}
+
 
 

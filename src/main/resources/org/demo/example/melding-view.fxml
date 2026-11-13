@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="dashboard-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.demo.example.controller.MeldingController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="dashboard-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.demo.example.controller.MeldingController">
    <children>
       <VBox prefHeight="800.0" prefWidth="181.0" styleClass="sidebar" stylesheets="@css/style.css">
          <children>
@@ -120,14 +120,15 @@
             </TextField>
          </children>
       </HBox>
-      <TableView layoutX="292.0" layoutY="240.0" prefHeight="501.0" prefWidth="841.0" styleClass="modern-table" stylesheets="@css/style.css">
+      <TableView fx:id="meldingenTable" layoutX="292.0" layoutY="240.0" prefHeight="501.0" prefWidth="841.0" styleClass="modern-table" stylesheets="@css/style.css">
         <columns>
-          <TableColumn prefWidth="75.0" text="ID" />
-          <TableColumn prefWidth="204.99996948242188" text="Fietsenstalling" />
-            <TableColumn prefWidth="121.0" text="Probleemtype" />
-            <TableColumn prefWidth="117.5" text="Status" />
-            <TableColumn prefWidth="188.3333740234375" text="Medewerker" />
-            <TableColumn prefWidth="100.83331298828125" text="Actie" />
+          <TableColumn fx:id="idColumn" prefWidth="45.5" text="ID" />
+          <TableColumn fx:id="fietsenstallingColumn" prefWidth="207.0" text="Fietsenstalling" />
+            <TableColumn fx:id="probleemtypeColumn" prefWidth="110.0" text="Probleemtype" />
+            <TableColumn fx:id="statusColumn" prefWidth="119.0" text="Status" />
+            <TableColumn fx:id="medewerkerColumn" prefWidth="143.0" text="Medewerker" />
+            <TableColumn fx:id="datumColumn" prefWidth="103.5" text="Datum" />
+            <TableColumn prefWidth="86.0" text="Actie" />
         </columns>
       </TableView>
    </children>

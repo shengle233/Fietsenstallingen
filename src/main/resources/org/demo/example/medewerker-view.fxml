@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="dashboard-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.demo.example.controller.MedewerkerController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="dashboard-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.demo.example.controller.MedewerkerController">
    <children>
       <VBox prefHeight="800.0" prefWidth="181.0" styleClass="sidebar" stylesheets="@css/style.css">
          <children>
@@ -112,15 +112,24 @@
             </VBox>
          </children>
       </HBox>
-      <TableView layoutX="290.0" layoutY="228.0" prefHeight="501.0" prefWidth="841.0" styleClass="modern-table" stylesheets="@css/style.css">
+      <TableView fx:id="medewerkersTable" layoutX="290.0" layoutY="228.0" prefHeight="501.0" prefWidth="841.0" styleClass="modern-table" stylesheets="@css/style.css">
         <columns>
-          <TableColumn prefWidth="75.0" text="ID" />
-          <TableColumn prefWidth="219.5" text="Naam" />
-            <TableColumn prefWidth="228.0" text="E-mail" />
-            <TableColumn prefWidth="137.0" text="Active meldingen" />
-            <TableColumn prefWidth="162.0" text="Actie" />
+          <TableColumn fx:id="idColumn" prefWidth="73.0" text="ID" />
+          <TableColumn fx:id="naamColumn" prefWidth="233.0" text="Naam" />
+            <TableColumn fx:id="emailColumn" prefWidth="365.0" text="E-mail" />
+            <TableColumn prefWidth="169.0" text="Active meldingen" />
         </columns>
       </TableView>
       <Button layoutX="941.0" layoutY="105.0" mnemonicParsing="false" onAction="#openNieuweMedewerker" styleClass="nieuwe-medewerker-button" stylesheets="@css/style.css" text="+ Nieuwe medewerker " />
+      <Button layoutX="883.0" layoutY="742.0" mnemonicParsing="false" onAction="#openBewerkMedewerker" prefHeight="40.0" prefWidth="116.0" styleClass="bewerken-button" stylesheets="@css/style.css" text="Bewerken">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="1016.0" layoutY="743.0" mnemonicParsing="false" onAction="#deleteMedewerker" styleClass="danger-button" stylesheets="@css/style.css" text="Verwijderen">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
