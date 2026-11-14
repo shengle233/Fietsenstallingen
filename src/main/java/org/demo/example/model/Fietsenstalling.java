@@ -22,5 +22,10 @@ public class Fietsenstalling {
     public String getAdres() {
         return adres;
     }
+
+    @Override
+    public String toString() {
+        return naam + " - " + adres;
+    }
 }
 

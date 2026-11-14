@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+
+<BorderPane
+        xmlns="http://javafx.com/javafx/21"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="org.demo.example.controller.MeldingDetailController"
+        stylesheets="@css/style.css"
+        style="-fx-background-color: #EDF3F9;">
+
+    <!-- TOP BAR -->
+    <top>
+        <HBox alignment="CENTER_LEFT"
+              spacing="20"
+              prefHeight="65"
+              style="-fx-background-color: #263547;">
+
+            <padding>
+                <Insets top="15" bottom="15"
+                        left="30" right="30"/>
+            </padding>
+
+            <Button text="← Terug"
+                    onAction="#terugNaarMeldingen"
+                    styleClass="secondary-button"/>
+
+            <Label text="Melding details"
+                   style="-fx-text-fill: white;
+                          -fx-font-size: 20px;
+                          -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <!-- CONTENT -->
+    <center>
+        <ScrollPane fitToWidth="true"
+                    hbarPolicy="NEVER"
+                    style="-fx-background-color: transparent;
+                           -fx-background: #EDF3F9;">
+
+            <VBox spacing="24"
+                  maxWidth="Infinity"
+                  fillWidth="true"
+                  style="-fx-background-color: #FFFFFF;
+                         -fx-background-radius: 12;">
+
+                <padding>
+                    <Insets top="30" bottom="30"
+                            left="35" right="35"/>
+                </padding>
+
+                <!-- MELDING INFORMATIE -->
+                <Label text="Melding informatie"
+                       style="-fx-font-size: 20px;
+                              -fx-font-weight: bold;
+                              -fx-text-fill: #263547;"/>
+
+                <GridPane hgap="25" vgap="20">
+
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="160"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+
+                    <!-- ID -->
+                    <Label text="Melding ID:"
+                           styleClass="detail-label"
+                           GridPane.rowIndex="0"/>
+
+                    <Label fx:id="meldingIdLabel"
+                           styleClass="detail-value"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="0"/>
+
+                    <!-- FIETSENSTALLING -->
+                    <Label text="Fietsenstalling:"
+                           styleClass="detail-label"
+                           GridPane.rowIndex="1"/>
+
+                    <Label fx:id="fietsenstallingLabel"
+                           styleClass="detail-value"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="1"/>
+
+                    <!-- PROBLEEMTYPE -->
+                    <Label text="Probleemtype:"
+                           styleClass="detail-label"
+                           GridPane.rowIndex="2"/>
+
+                    <Label fx:id="probleemtypeLabel"
+                           styleClass="detail-value"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="2"/>
+
+                    <!-- STATUS -->
+                    <Label text="Status:"
+                           styleClass="detail-label"
+                           GridPane.rowIndex="3"/>
+
+                    <Label fx:id="statusLabel"
+                           styleClass="detail-value"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="3"/>
+
+                    <!-- MEDEWERKER -->
+                    <Label text="Medewerker:"
+                           styleClass="detail-label"
+                           GridPane.rowIndex="4"/>
+
+                    <HBox spacing="12"
+                          alignment="CENTER_LEFT"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="4">
+
+                        <ComboBox fx:id="medewerkerComboBox"
+                                  promptText="Niet toegewezen"
+                                  prefWidth="360"
+                                  prefHeight="42"
+                                  maxWidth="360"
+                                  styleClass="medewerker-combo"/>
+
+                        <Button fx:id="wijzigMedewerkerButton"
+                                text="Wijzigen"
+                                prefHeight="42"
+                                onAction="#wijzigMedewerker"
+                                styleClass="bewerken-button"/>
+
+                    </HBox>
+
+                    <!-- DATUM -->
+                    <Label text="Datum:"
+                           styleClass="detail-label"
+                           GridPane.rowIndex="5"/>
+
+                    <Label fx:id="datumLabel"
+                           styleClass="detail-value"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="5"/>
+
+                </GridPane>
+
+                <HBox spacing="12"
+                      alignment="CENTER_LEFT">
+
+                    <Button fx:id="onderbrekenButton"
+                            text="Onderbreken"
+                            prefHeight="42"
+                            onAction="#onderbrekenMelding"
+                            styleClass="secondary-button"/>
+
+                    <Button fx:id="hervattenButton"
+                            text="Hervatten"
+                            prefHeight="42"
+                            onAction="#hervattenMelding"
+                            styleClass="bewerken-button"/>
+
+                    <Button fx:id="afhandelenButton"
+                            text="Afhandelen"
+                            prefHeight="42"
+                            onAction="#afhandelenMelding"
+                            styleClass="primary-button"/>
+
+                    <Button fx:id="verwijderenButton"
+                            text="Verwijderen"
+                            prefHeight="42"
+                            onAction="#verwijderMelding"
+                            styleClass="danger-button"/>
+
+
+                </HBox>
+
+                <Separator/>
+
+                <!-- OMSCHRIJVING -->
+                <Label text="Omschrijving"
+                       styleClass="detail-section-title"/>
+
+                <TextArea fx:id="omschrijvingArea"
+                          editable="false"
+                          focusTraversable="false"
+                          wrapText="true"
+                          prefRowCount="4"
+                          styleClass="detail-textarea"/>
+
+                <Separator/>
+
+                <!-- TAKEN -->
+
+                <Label text="Taken"
+                       styleClass="detail-section-title"/>
+
+                <VBox fx:id="takenContainer"
+                      spacing="14"
+                      fillWidth="true"
+                      styleClass="taken-container"/>
+
+                <Separator/>
+
+                <HBox spacing="12"
+                      alignment="CENTER_LEFT">
+
+                    <TextField fx:id="nieuweTaakField"
+                               promptText="Omschrijving nieuwe taak..."
+                               prefHeight="42"
+                               HBox.hgrow="ALWAYS"
+                               styleClass="zoek-field"/>
+
+                    <Button fx:id="taakToevoegenButton"
+                            text="+ Taak toevoegen"
+                            prefHeight="42"
+                            onAction="#taakToevoegen"
+                            styleClass="primary-button"/>
+
+                </HBox>
+
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>
+

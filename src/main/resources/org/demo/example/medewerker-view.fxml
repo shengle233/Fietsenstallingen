@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="dashboard-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.demo.example.controller.MedewerkerController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="dashboard-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.demo.example.controller.MedewerkerController">
    <children>
       <VBox prefHeight="800.0" prefWidth="181.0" styleClass="sidebar" stylesheets="@css/style.css">
          <children>
@@ -72,7 +72,7 @@
                   <Insets />
                </VBox.margin>
             </Separator>
-            <Button mnemonicParsing="false" styleClass="nav-button-afsluiten" stylesheets="@css/style.css" text="Afsluiten">
+            <Button mnemonicParsing="false" onAction="#afsluiten" styleClass="nav-button-afsluiten" stylesheets="@css/style.css" text="Afsluiten">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" top="10.0" />
                </VBox.margin>
@@ -103,7 +103,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="60.0" prefWidth="829.0" text="Zoek medewerker...">
+                  <TextField fx:id="zoekField" prefHeight="60.0" prefWidth="829.0" promptText="Zoek medewerker...">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -117,7 +117,7 @@
           <TableColumn fx:id="idColumn" prefWidth="73.0" text="ID" />
           <TableColumn fx:id="naamColumn" prefWidth="233.0" text="Naam" />
             <TableColumn fx:id="emailColumn" prefWidth="365.0" text="E-mail" />
-            <TableColumn prefWidth="169.0" text="Active meldingen" />
+            <TableColumn fx:id="actieveMeldingenColumn" prefWidth="169.0" text="Active meldingen" />
         </columns>
       </TableView>
       <Button layoutX="941.0" layoutY="105.0" mnemonicParsing="false" onAction="#openNieuweMedewerker" styleClass="nieuwe-medewerker-button" stylesheets="@css/style.css" text="+ Nieuwe medewerker " />

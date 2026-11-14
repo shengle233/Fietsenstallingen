@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="dashboard-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.demo.example.controller.HomeController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="dashboard-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.demo.example.controller.HomeController">
    <children>
       <VBox prefHeight="800.0" prefWidth="181.0" styleClass="sidebar" stylesheets="@css/style.css">
          <children>
@@ -103,7 +103,7 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label prefHeight="29.0" prefWidth="51.0" text="12">
+                  <Label fx:id="openAantalLabel" prefHeight="29.0" prefWidth="51.0" text="12">
                      <font>
                         <Font name="System Bold" size="35.0" />
                      </font>
@@ -126,7 +126,7 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="8">
+                  <Label fx:id="behandelingAantalLabel" text="8">
                      <font>
                         <Font name="System Bold" size="35.0" />
                      </font>
@@ -152,7 +152,7 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="3">
+                  <Label fx:id="onderbrokenAantalLabel" text="3">
                      <font>
                         <Font name="System Bold" size="35.0" />
                      </font>
@@ -170,12 +170,13 @@
             </VBox>
          </children>
       </HBox>
-      <TableView layoutX="234.0" layoutY="379.0" prefHeight="357.0" prefWidth="900.0" styleClass="modern-table" stylesheets="@css/style.css">
+      <TableView fx:id="recenteMeldingenTable" layoutX="234.0" layoutY="379.0" prefHeight="357.0" prefWidth="900.0" styleClass="modern-table" stylesheets="@css/style.css">
         <columns>
-          <TableColumn prefWidth="155.66665649414062" text="Fietsenstalling" />
-          <TableColumn prefWidth="143.16665649414062" text="Probleemtype" />
-            <TableColumn prefWidth="140.16668701171875" text="Datum" />
-            <TableColumn prefWidth="131.83331298828125" text="Status" />
+            <TableColumn fx:id="recentIdColumn" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="recentFietsenstallingColumn" prefWidth="434.66656494140625" text="Fietsenstalling" />
+          <TableColumn fx:id="recentProbleemtypeColumn" minWidth="0.0" prefWidth="131.9998779296875" text="Probleemtype" />
+            <TableColumn fx:id="recentDatumColumn" minWidth="0.0" prefWidth="130.666748046875" text="Datum" />
+            <TableColumn fx:id="recentStatusColumn" prefWidth="128.6666259765625" text="Status" />
         </columns>
       </TableView>
       <Label layoutX="234.0" layoutY="321.0" text="Recente meldingen">
@@ -187,10 +188,5 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label alignment="CENTER" layoutX="1003.0" layoutY="333.0" prefHeight="34.0" prefWidth="128.0" styleClass="stat-card" stylesheets="@css/style.css" text=" Alle meldingen">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="dashboard-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.demo.example.controller.MeldingController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="dashboard-background" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.demo.example.controller.MeldingController">
    <children>
       <VBox prefHeight="800.0" prefWidth="181.0" styleClass="sidebar" stylesheets="@css/style.css">
          <children>
@@ -72,7 +73,7 @@
                   <Insets />
                </VBox.margin>
             </Separator>
-            <Button mnemonicParsing="false" styleClass="nav-button-afsluiten" stylesheets="@css/style.css" text="Afsluiten">
+            <Button mnemonicParsing="false" onAction="#afsluiten" styleClass="nav-button-afsluiten" stylesheets="@css/style.css" text="Afsluiten">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" top="10.0" />
                </VBox.margin>
@@ -103,21 +104,18 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="60.0" prefWidth="634.0" text="Zoek melding...">
+                  <TextField fx:id="zoekField" prefHeight="60.0" prefWidth="634.0" promptText="Zoek melding..." styleClass="zoek-field" stylesheets="@css/style.css">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
                </children>
             </VBox>
-            <TextField prefHeight="59.0" prefWidth="142.0" text="Alle statussen">
+            <ComboBox fx:id="statusComboBox" prefHeight="60.0" prefWidth="150.0" promptText="Alle statussen" style="-fx-background-color: white;" styleClass="status-combo" stylesheets="@css/style.css">
                <HBox.margin>
-                  <Insets left="25.0" top="66.0" />
+                  <Insets left="15.0" top="65.0" />
                </HBox.margin>
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </TextField>
+            </ComboBox>
          </children>
       </HBox>
       <TableView fx:id="meldingenTable" layoutX="292.0" layoutY="240.0" prefHeight="501.0" prefWidth="841.0" styleClass="modern-table" stylesheets="@css/style.css">

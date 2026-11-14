@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefWidth="400" spacing="16" style="-fx-background-color: white;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.demo.example.controller.NieuweMedewerkerDialogController">
+<VBox prefWidth="400" spacing="16" style="-fx-background-color: white;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.demo.example.controller.NieuweMedewerkerDialogController">
 
         <padding>
             <Insets bottom="15" left="25" right="25" top="25" />

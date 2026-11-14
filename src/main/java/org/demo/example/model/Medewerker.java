@@ -30,5 +30,10 @@ public class Medewerker {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return naam + " (" + email + ")";
+    }
 }
 

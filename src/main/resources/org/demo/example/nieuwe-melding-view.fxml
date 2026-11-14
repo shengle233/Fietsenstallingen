@@ -70,7 +70,7 @@
 
             <Separator prefWidth="180" />
 
-            <Button mnemonicParsing="false" styleClass="nav-button-afsluiten" text="Afsluiten">
+            <Button mnemonicParsing="false" onAction="#afsluiten" styleClass="nav-button-afsluiten" text="Afsluiten">
 
                <VBox.margin>
                   <Insets bottom="20" left="20" top="10" />
@@ -231,7 +231,7 @@
 
                               <Button fx:id="annulerenButton" prefHeight="42" styleClass="secondary-button" text="Annuleren" />
 
-                              <Button fx:id="opslaanButton" prefHeight="42" styleClass="primary-button" text="Melding opslaan" />
+                              <Button fx:id="opslaanButton" onAction="#opslaanMelding" prefHeight="42" styleClass="primary-button" text="Melding opslaan" />
 
                            </children>
                         </HBox>

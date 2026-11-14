@@ -4,6 +4,9 @@ package org.demo.example.controller;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +17,11 @@ import org.demo.example.repository.MedewerkerRepository;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import javafx.scene.control.TextField;
+
 
 public class MedewerkerController extends NavigationController {
 
@@ -29,6 +36,18 @@ public class MedewerkerController extends NavigationController {
 
     @FXML
     private TableColumn<Medewerker, String> emailColumn;
+
+    @FXML
+    private TextField zoekField;
+
+    @FXML
+    private TableColumn<Medewerker, Integer> actieveMeldingenColumn;
+
+    private FilteredList<Medewerker> filteredMedewerkers;
+
+    private Map<Integer, Integer> actieveAantallen =
+            new HashMap<>();
+
 
     private final MedewerkerRepository repository =
             new MedewerkerRepository();
@@ -54,28 +73,62 @@ public class MedewerkerController extends NavigationController {
                 )
         );
 
+        actieveMeldingenColumn.setCellValueFactory(data ->
+                new ReadOnlyObjectWrapper<>(
+                        actieveAantallen.getOrDefault(
+                                data.getValue().getMedewerkerId(),
+                                0
+                        )
+                )
+        );
+
+        zoekField.textProperty().addListener(
+                (obs, oldValue, newValue) -> updateFilter()
+        );
+
+
         loadMedewerkers();
     }
+
 
     private void loadMedewerkers() {
 
         try {
-            medewerkersTable.setItems(
+            ObservableList<Medewerker> medewerkers =
                     FXCollections.observableArrayList(
                             repository.findAll()
-                    )
+                    );
+
+            actieveAantallen =
+                    repository.countActieveMeldingen();
+
+            filteredMedewerkers =
+                    new FilteredList<>(medewerkers, m -> true);
+
+            SortedList<Medewerker> sortedMedewerkers =
+                    new SortedList<>(filteredMedewerkers);
+
+            sortedMedewerkers.comparatorProperty().bind(
+                    medewerkersTable.comparatorProperty()
             );
+
+            medewerkersTable.setItems(sortedMedewerkers);
+
+            updateFilter();
 
         } catch (SQLException e) {
             e.printStackTrace();
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Databasefout");
-            alert.setHeaderText("Medewerkers laden mislukt");
+            alert.setHeaderText(
+                    "Medewerkers laden mislukt"
+            );
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
     }
+
 
     @FXML
     private void openNieuweMedewerker() {
@@ -201,13 +254,12 @@ public class MedewerkerController extends NavigationController {
 
     @FXML
     private void openBewerkMedewerker() {
-        System.out.println("1. Bewerken clicked");
 
         // 1. Haal de geselecteerde medewerker op
         Medewerker geselecteerdeMedewerker =
                 medewerkersTable.getSelectionModel()
                         .getSelectedItem();
-        System.out.println("2. Selected: " + geselecteerdeMedewerker);
+
         if (geselecteerdeMedewerker == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Geen medewerker geselecteerd");
@@ -215,7 +267,6 @@ public class MedewerkerController extends NavigationController {
             alert.showAndWait();
             return;
         }
-        System.out.println("3. Employee found");
 
         try {
             // 2. Laad dezelfde dialog als bij toevoegen
@@ -406,6 +457,33 @@ public class MedewerkerController extends NavigationController {
             alert.showAndWait();
         }
     }
+
+
+    private void updateFilter() {
+
+        if (filteredMedewerkers == null) {
+            return;
+        }
+
+        String zoekterm = zoekField.getText()
+                .toLowerCase()
+                .trim();
+
+        filteredMedewerkers.setPredicate(medewerker -> {
+
+            return zoekterm.isEmpty()
+                    || String.valueOf(
+                    medewerker.getMedewerkerId()
+            ).contains(zoekterm)
+                    || medewerker.getNaam()
+                    .toLowerCase()
+                    .contains(zoekterm)
+                    || medewerker.getEmail()
+                    .toLowerCase()
+                    .contains(zoekterm);
+        });
+    }
+
 
 
 }

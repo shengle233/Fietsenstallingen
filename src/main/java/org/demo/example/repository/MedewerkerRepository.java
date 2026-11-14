@@ -6,7 +6,9 @@ import org.demo.example.model.Medewerker;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MedewerkerRepository {
 
@@ -118,6 +120,38 @@ public class MedewerkerRepository {
             return stmt.executeUpdate() == 1;
         }
     }
+
+
+    public Map<Integer, Integer> countActieveMeldingen()
+            throws SQLException {
+
+        Map<Integer, Integer> aantallen = new HashMap<>();
+
+        String sql = """
+            SELECT
+                medewerker_medewerkerId AS medewerkerId,
+                COUNT(*) AS aantal
+            FROM melding
+            WHERE medewerker_medewerkerId IS NOT NULL
+              AND status <> 'AFGEHANDELD'
+            GROUP BY medewerker_medewerkerId
+            """;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                aantallen.put(
+                        rs.getInt("medewerkerId"),
+                        rs.getInt("aantal")
+                );
+            }
+        }
+
+        return aantallen;
+    }
+
 
 
 }
