@@ -1,6 +1,7 @@
 package org.demo.example.repository;
 
 import org.demo.example.database.DatabaseConnection;
+import org.demo.example.model.Melding;
 import org.demo.example.model.MeldingDetail;
 import org.demo.example.model.MeldingOverzicht;
 
@@ -71,6 +72,39 @@ public class MeldingRepository {
 
 
     public int createMelding(
+            Melding melding,
+            List<String> taken
+    ) throws SQLException {
+
+        if (melding == null) {
+            throw new IllegalArgumentException(
+                    "Melding mag niet null zijn."
+            );
+        }
+
+        Integer medewerkerId = null;
+
+        if (melding.getMedewerker() != null) {
+            medewerkerId = melding.getMedewerker()
+                    .getMedewerkerId();
+        }
+
+        return createMelding(
+                melding.getFietsenstalling()
+                        .getFietsenstallingId(),
+                medewerkerId,
+                melding.getOmschrijving(),
+                melding.getProbleem().getType(),
+                taken
+        );
+    }
+
+
+    /**
+     * Slaat een melding en de bijbehorende taken
+     * op binnen één database-transactie.
+     */
+    public int createMelding(
             int fietsenstallingId,
             Integer medewerkerId,
             String omschrijving,
@@ -78,7 +112,7 @@ public class MeldingRepository {
             List<String> taken
     ) throws SQLException {
 
-        // Controleer de invoer
+        // Invoer controleren
         if (fietsenstallingId <= 0) {
             throw new IllegalArgumentException(
                     "Selecteer een fietsenstalling."
@@ -101,6 +135,7 @@ public class MeldingRepository {
                 || taken.stream().anyMatch(
                 taak -> taak == null || taak.isBlank()
         )) {
+
             throw new IllegalArgumentException(
                     "Voeg minimaal één geldige taak toe."
             );
@@ -118,12 +153,16 @@ public class MeldingRepository {
             """;
 
         String taakSql = """
-        INSERT INTO taak
-            (melding_meldingId, omschrijving, voltooid, volgorde)
-        VALUES (?, ?, 0, ?)
-        """;
+            INSERT INTO taak
+                (melding_meldingId,
+                 omschrijving,
+                 voltooid,
+                 volgorde)
+            VALUES (?, ?, 0, ?)
+            """;
 
-        try (Connection conn = DatabaseConnection.getConnection()) {
+        try (Connection conn =
+                     DatabaseConnection.getConnection()) {
 
             conn.setAutoCommit(false);
 
@@ -148,7 +187,13 @@ public class MeldingRepository {
                     stmt.setString(3, omschrijving.trim());
                     stmt.setString(4, probleemtype);
 
-                    stmt.executeUpdate();
+                    int inserted = stmt.executeUpdate();
+
+                    if (inserted != 1) {
+                        throw new SQLException(
+                                "Melding opslaan mislukt."
+                        );
+                    }
 
                     // 2. Nieuwe meldingId ophalen
                     try (ResultSet keys = stmt.getGeneratedKeys()) {
@@ -175,18 +220,24 @@ public class MeldingRepository {
                         stmt.setString(2, taak.trim());
                         stmt.setInt(3, volgorde++);
 
-                        stmt.executeUpdate();
+                        int inserted = stmt.executeUpdate();
+
+                        if (inserted != 1) {
+                            throw new SQLException(
+                                    "Taak opslaan mislukt."
+                            );
+                        }
                     }
                 }
 
-                // 4. Alles is gelukt
+                // 4. Alles opslaan
                 conn.commit();
 
                 return meldingId;
 
             } catch (SQLException | RuntimeException e) {
 
-                // 5. Bij een fout alles terugdraaien
+                // 5. Alles terugdraaien bij een fout
                 try {
                     conn.rollback();
                 } catch (SQLException rollbackError) {
@@ -952,6 +1003,39 @@ public class MeldingRepository {
             }
         }
     }
+
+
+    public boolean updateOmschrijving(
+            int meldingId,
+            String omschrijving
+    ) throws SQLException {
+
+        if (omschrijving == null || omschrijving.isBlank()) {
+            throw new IllegalArgumentException(
+                    "Omschrijving mag niet leeg zijn."
+            );
+        }
+
+        String sql = """
+            UPDATE melding
+            SET omschrijving = ?
+            WHERE meldingId = ?
+              AND status <> 'AFGEHANDELD'
+            """;
+
+        try (Connection conn =
+                     DatabaseConnection.getConnection();
+
+             PreparedStatement stmt =
+                     conn.prepareStatement(sql)) {
+
+            stmt.setString(1, omschrijving.trim());
+            stmt.setInt(2, meldingId);
+
+            return stmt.executeUpdate() == 1;
+        }
+    }
+
 
 
 

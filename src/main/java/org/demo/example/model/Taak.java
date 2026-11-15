@@ -13,6 +13,7 @@ public class Taak {
         this.voltooid = false;
     }
 
+
     public int getTaakId() {
         return taakId;
     }

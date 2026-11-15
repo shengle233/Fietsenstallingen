@@ -42,6 +42,13 @@ public class MeldingDetailController {
     @FXML private Button taakToevoegenButton;
     @FXML private Button verwijderenButton;
 
+    @FXML private Button bewerkOmschrijvingButton;
+    @FXML private Button opslaanOmschrijvingButton;
+    @FXML private Button annuleerOmschrijvingButton;
+
+    private String origineleOmschrijving;
+    private boolean omschrijvingWijzigenToegestaan;
+
     private final MeldingRepository repository =
             new MeldingRepository();
 
@@ -88,6 +95,17 @@ public class MeldingDetailController {
 
             omschrijvingArea.setText(
                     melding.omschrijving()
+            );
+
+            origineleOmschrijving = melding.omschrijving();
+
+            omschrijvingWijzigenToegestaan =
+                    !"AFGEHANDELD".equals(melding.status());
+
+            setOmschrijvingBewerkModus(false);
+
+            bewerkOmschrijvingButton.setDisable(
+                    !omschrijvingWijzigenToegestaan
             );
 
             loadMedewerkers(melding.medewerkerId());
@@ -547,6 +565,81 @@ public class MeldingDetailController {
             loadMelding(huidigeMeldingId);
         }
     }
+
+
+    @FXML
+    private void bewerkOmschrijving() {
+
+        if (!omschrijvingWijzigenToegestaan) {
+            return;
+        }
+
+        setOmschrijvingBewerkModus(true);
+        System.out.println("Bewerken clicked");
+        System.out.println("Toegestaan: " + omschrijvingWijzigenToegestaan);
+        System.out.println("Editable: " + omschrijvingArea.isEditable());
+        omschrijvingArea.requestFocus();
+    }
+
+    @FXML
+    private void opslaanOmschrijving() {
+
+        String nieuweOmschrijving = omschrijvingArea.getText();
+
+        if (nieuweOmschrijving == null
+                || nieuweOmschrijving.isBlank()) {
+            toonFout("Omschrijving mag niet leeg zijn.");
+            return;
+        }
+
+        try {
+            boolean gelukt = repository.updateOmschrijving(
+                    huidigeMeldingId,
+                    nieuweOmschrijving
+            );
+
+            if (!gelukt) {
+                toonFout(
+                        "Deze melding kan niet worden gewijzigd."
+                );
+                loadMelding(huidigeMeldingId);
+                return;
+            }
+
+            loadMelding(huidigeMeldingId);
+            toonSucces("Omschrijving gewijzigd.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            toonFout(e.getMessage());
+
+        } catch (IllegalArgumentException e) {
+            toonFout(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void annuleerOmschrijving() {
+
+        omschrijvingArea.setText(origineleOmschrijving);
+        setOmschrijvingBewerkModus(false);
+    }
+
+    private void setOmschrijvingBewerkModus(boolean bewerken) {
+
+        omschrijvingArea.setEditable(bewerken);
+        omschrijvingArea.setFocusTraversable(bewerken);
+
+        bewerkOmschrijvingButton.setVisible(!bewerken);
+        bewerkOmschrijvingButton.setManaged(!bewerken);
+
+        opslaanOmschrijvingButton.setVisible(bewerken);
+        opslaanOmschrijvingButton.setManaged(bewerken);
+
+        annuleerOmschrijvingButton.setVisible(bewerken);
+        annuleerOmschrijvingButton.setManaged(bewerken);
+    }
+
 
 
 

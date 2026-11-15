@@ -179,8 +179,34 @@
                 <Separator/>
 
                 <!-- OMSCHRIJVING -->
-                <Label text="Omschrijving"
-                       styleClass="detail-section-title"/>
+
+                <HBox alignment="CENTER_LEFT" spacing="12">
+
+                    <Label text="Omschrijving"
+                           styleClass="detail-section-title"
+                           HBox.hgrow="ALWAYS"
+                           maxWidth="Infinity"/>
+
+                    <Button fx:id="bewerkOmschrijvingButton"
+                            text="Bewerken"
+                            onAction="#bewerkOmschrijving"
+                            styleClass="bewerken-button"/>
+
+                    <Button fx:id="opslaanOmschrijvingButton"
+                            text="Opslaan"
+                            onAction="#opslaanOmschrijving"
+                            styleClass="primary-button"
+                            visible="false"
+                            managed="false"/>
+
+                    <Button fx:id="annuleerOmschrijvingButton"
+                            text="Annuleren"
+                            onAction="#annuleerOmschrijving"
+                            styleClass="secondary-button"
+                            visible="false"
+                            managed="false"/>
+
+                </HBox>
 
                 <TextArea fx:id="omschrijvingArea"
                           editable="false"
@@ -188,6 +214,7 @@
                           wrapText="true"
                           prefRowCount="4"
                           styleClass="detail-textarea"/>
+
 
                 <Separator/>
 

@@ -20,6 +20,7 @@ public abstract class Probleem {
             case "Verlichting" -> new Verlichtingsprobleem();
             case "Schoonmaak" -> new Schoonmaakprobleem();
             case "Beschadiging" -> new Beschadigingsprobleem();
+            case "Anders" -> new Andersprobleem();
 
             default -> throw new IllegalArgumentException(
                     "Onbekend probleemtype: " + type

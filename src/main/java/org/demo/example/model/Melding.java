@@ -38,6 +38,23 @@ public class Melding {
         this.taken = new ArrayList<>();
     }
 
+    public Melding(
+            String omschrijving,
+            Fietsenstalling fietsenstalling,
+            Probleem probleem
+    ) {
+        this(
+                0,
+                omschrijving,
+                fietsenstalling,
+                probleem
+        );
+    }
+
+
+
+
+
     public int getMeldingId() {
         return meldingId;
     }

@@ -199,26 +199,15 @@
 
                               <Region HBox.hgrow="ALWAYS" />
 
-                              <Button fx:id="taakToevoegenButton" prefHeight="36" style="-fx-background-color: #E9F2FC;                                                        -fx-text-fill: #306EAE;                                                        -fx-font-weight: bold;                                                        -fx-background-radius: 8px;" text="+ Taak toevoegen" />
+                              <Button fx:id="taakToevoegenButton" onAction="#taakToevoegen" prefHeight="36" style="-fx-background-color: #E9F2FC;                                                        -fx-text-fill: #306EAE;                                                        -fx-font-weight: bold;                                                        -fx-background-radius: 8px;" text="+ Taak toevoegen" />
 
                            </children>
                         </HBox>
 
                         <!-- DYNAMIC TASK CONTAINER -->
 
-                        <VBox fx:id="takenContainer" spacing="12">
+                        <VBox fx:id="takenContainer" spacing="12" fillWidth="true">
 
-                           <children>
-
-                              <VBox spacing="8" style="-fx-background-color: #F9FBFD;                                                      -fx-background-radius: 8px;                                                      -fx-border-color: #DFE6EE;                                                      -fx-border-radius: 8px;                                                      -fx-padding: 15px;">
-
-                                 <Label styleClass="form-label" text="Taak 1 *" />
-
-                                 <TextField fx:id="eersteTaakField" prefHeight="40" promptText="Beschrijf de taak..." styleClass="form-input" />
-
-                              </VBox>
-
-                           </children>
                         </VBox>
 
                         <Separator />

@@ -444,4 +444,45 @@
 }
 
 
+.nieuwe-taak-card {
+    -fx-background-color: #F8FAFC;
+    -fx-background-radius: 10px;
+    -fx-border-color: #D9E2EA;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-padding: 15px 18px;
+}
+
+.nieuwe-taak-card .text-field {
+    -fx-background-color: white;
+    -fx-border-color: #D9E2EA;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+}
+
+/* Subtiele verwijderknop voor taken */
+
+.taak-delete-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 20px;
+    -fx-font-weight: normal;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+
+.taak-delete-button:hover {
+    -fx-background-color: #FDECEC;
+    -fx-text-fill: #C44D4D;
+}
+
+.taak-delete-button:pressed {
+    -fx-background-color: #FADADA;
+    -fx-text-fill: #A83A3A;
+}
+
+
 
