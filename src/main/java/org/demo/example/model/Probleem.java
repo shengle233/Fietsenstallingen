@@ -2,11 +2,9 @@ package org.demo.example.model;
 
 import java.util.List;
 
-public abstract class Probleem {
+public abstract class Probleem implements TaakSuggestieProvider {
 
     public abstract String getType();
-
-    public abstract List<String> maakTaken();
 
     public static Probleem vanType(String type) {
 

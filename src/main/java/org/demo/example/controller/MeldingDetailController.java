@@ -189,6 +189,17 @@ public class MeldingDetailController {
 
                 Button omhoogButton = new Button("↑");
                 Button omlaagButton = new Button("↓");
+                Button verwijderTaakButton = new Button("×");
+
+                verwijderTaakButton.getStyleClass().add("taak-delete-button");
+
+                verwijderTaakButton.setDisable(
+                        afgehandeld || onderbroken || taken.size() <= 1
+                );
+
+                verwijderTaakButton.setOnAction(event ->
+                        verwijderTaak(taak.taakId())
+                );
 
                 omhoogButton.getStyleClass().add("taak-move-button");
                 omlaagButton.getStyleClass().add("taak-move-button");
@@ -220,7 +231,8 @@ public class MeldingDetailController {
                         12,
                         checkBox,
                         omhoogButton,
-                        omlaagButton
+                        omlaagButton,
+                        verwijderTaakButton
                 );
 
                 taakRow.setAlignment(Pos.CENTER_LEFT);
@@ -639,6 +651,50 @@ public class MeldingDetailController {
         annuleerOmschrijvingButton.setVisible(bewerken);
         annuleerOmschrijvingButton.setManaged(bewerken);
     }
+
+
+    private void verwijderTaak(int taakId) {
+
+        Alert bevestiging = new Alert(
+                Alert.AlertType.CONFIRMATION
+        );
+
+        bevestiging.setTitle("Taak verwijderen");
+        bevestiging.setHeaderText(
+                "Weet je zeker dat je deze taak wilt verwijderen?"
+        );
+        bevestiging.setContentText(
+                "Deze actie kan niet ongedaan worden gemaakt."
+        );
+
+        if (bevestiging.showAndWait()
+                .filter(button -> button == ButtonType.OK)
+                .isEmpty()) {
+            return;
+        }
+
+        try {
+            boolean gelukt = repository.deleteTaak(
+                    huidigeMeldingId,
+                    taakId
+            );
+
+            if (!gelukt) {
+                toonFout(
+                        "De taak kan niet worden verwijderd. "
+                                + "Controleer de status en het aantal taken."
+                );
+            }
+
+            loadMelding(huidigeMeldingId);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            toonFout(e.getMessage());
+            loadMelding(huidigeMeldingId);
+        }
+    }
+
 
 
 

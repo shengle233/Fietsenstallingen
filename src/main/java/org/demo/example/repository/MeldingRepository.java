@@ -1037,6 +1037,134 @@ public class MeldingRepository {
     }
 
 
+    public boolean deleteTaak(int meldingId, int taakId)
+            throws SQLException {
+
+        String meldingSql = """
+        SELECT status
+        FROM melding
+        WHERE meldingId = ?
+        FOR UPDATE
+        """;
+
+        String selectTakenSql = """
+        SELECT taakId
+        FROM taak
+        WHERE melding_meldingId = ?
+        ORDER BY volgorde, taakId
+        FOR UPDATE
+        """;
+
+        String deleteSql = """
+        DELETE FROM taak
+        WHERE taakId = ?
+          AND melding_meldingId = ?
+        """;
+
+        String updateVolgordeSql = """
+        UPDATE taak
+        SET volgorde = ?
+        WHERE taakId = ?
+          AND melding_meldingId = ?
+        """;
+
+        try (Connection conn = DatabaseConnection.getConnection()) {
+
+            conn.setAutoCommit(false);
+
+            try {
+                String status;
+
+                // 1. Melding vergrendelen en status ophalen
+                try (PreparedStatement stmt =
+                             conn.prepareStatement(meldingSql)) {
+
+                    stmt.setInt(1, meldingId);
+
+                    try (ResultSet rs = stmt.executeQuery()) {
+                        if (!rs.next()) {
+                            conn.rollback();
+                            return false;
+                        }
+
+                        status = rs.getString("status");
+                    }
+                }
+
+                // 2. Controleren of verwijderen is toegestaan
+                if (!"OPEN".equals(status)
+                        && !"IN_BEHANDELING".equals(status)) {
+                    conn.rollback();
+                    return false;
+                }
+
+                // 3. Alle taken van de melding ophalen
+                List<Integer> taakIds = new ArrayList<>();
+
+                try (PreparedStatement stmt =
+                             conn.prepareStatement(selectTakenSql)) {
+
+                    stmt.setInt(1, meldingId);
+
+                    try (ResultSet rs = stmt.executeQuery()) {
+                        while (rs.next()) {
+                            taakIds.add(rs.getInt("taakId"));
+                        }
+                    }
+                }
+
+                // Minimaal één taak moet overblijven
+                if (taakIds.size() <= 1 || !taakIds.contains(taakId)) {
+                    conn.rollback();
+                    return false;
+                }
+
+                // 4. Geselecteerde taak verwijderen
+                try (PreparedStatement stmt =
+                             conn.prepareStatement(deleteSql)) {
+
+                    stmt.setInt(1, taakId);
+                    stmt.setInt(2, meldingId);
+
+                    if (stmt.executeUpdate() != 1) {
+                        conn.rollback();
+                        return false;
+                    }
+                }
+
+                // 5. Overgebleven taken opnieuw nummeren
+                taakIds.remove(Integer.valueOf(taakId));
+
+                try (PreparedStatement stmt =
+                             conn.prepareStatement(updateVolgordeSql)) {
+
+                    for (int i = 0; i < taakIds.size(); i++) {
+                        stmt.setInt(1, i + 1);
+                        stmt.setInt(2, taakIds.get(i));
+                        stmt.setInt(3, meldingId);
+                        stmt.addBatch();
+                    }
+
+                    stmt.executeBatch();
+                }
+
+                conn.commit();
+                return true;
+
+            } catch (SQLException | RuntimeException e) {
+                try {
+                    conn.rollback();
+                } catch (SQLException rollbackError) {
+                    e.addSuppressed(rollbackError);
+                }
+
+                throw e;
+            }
+        }
+    }
+
+
+
 
 
 
